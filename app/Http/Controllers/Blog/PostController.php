@@ -11,12 +11,13 @@ class PostController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         $items = BlogPost::All();
-        return view('blog.posts.index', compact($items));
+
+        return view('blog.posts.index', compact('items'));
 //        dd($items->first());
 //        return view('blog.posts.index', ['items'=>$items]);
 
