@@ -14,13 +14,28 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('rest', 'RestTestController')->names('restTest');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+//Route::resource('rest', 'RestTestController')->names('restTest');
 
 //группа маршрутов для блога
 Route::group(['namespace'=>'Blog','prefix'=>'blog'], function (){
     Route::resource('posts','PostController')->names('blog.posts');
 });
+//Админка блога
 
-Auth::routes();
+$groupData = [
+    'namespace' => 'Blog\Admin',
+    'prefix' => 'admin/blog'
+];
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group($groupData, function () {
+//    BlogCategories
+    $methods = ['index', 'edit', 'update', 'store', 'create', 'show', 'destroy'];
+    Route::resource('categories', 'CategoryController')
+        ->only($methods)
+        ->names('blog.admin.categories');
+
+});
