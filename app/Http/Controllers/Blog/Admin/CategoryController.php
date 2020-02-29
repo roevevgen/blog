@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function index()
     {
-        dd(__METHOD__);
+        $paginator = BlogCategory::paginate(15);
+
+        return view('blog.admin.category.index', compact('paginator'));
     }
 
     /**
@@ -53,11 +56,18 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+
+        $item[] = BlogCategory::findOrFail($id);
+//        $item[] = BlogCategory::find($id);
+//        $item[] = BlogCategory::where('id', $id)->first();
+//        dd(collect($item)->pluck('id'));
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.category.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -69,7 +79,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd(__METHOD__);
+        dd(__METHOD__, $request()->all, $id);
     }
 
     /**
