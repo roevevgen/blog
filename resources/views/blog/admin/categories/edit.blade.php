@@ -4,7 +4,7 @@
         /** @var  \App\Models\BlogCategory  $item  */
     @endphp
 
-    <form method="POST" action="{{ route('blog.admin.categories.update'), $item->id }}">
+    <form method="POST" action="{{ route('blog.admin.categories.update', $item->id) }}">
         @method('PATCH')
         @csrf
         <div class="container">
