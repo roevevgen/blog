@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.18.0 on 2020-03-09 22:00:48.
+ * Generated for Laravel 6.18.3 on 2020-03-27 01:01:57.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2730,7 +2730,6 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $command
          * @return mixed 
-         * @throws \RuntimeException
          * @static 
          */ 
         public static function dispatchToQueue($command)
