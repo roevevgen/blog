@@ -21,8 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::resource('rest', 'RestTestController')->names('restTest');
 
 //группа маршрутов для блога
-Route::group(['namespace'=>'Blog','prefix'=>'blog'], function (){
-    Route::resource('posts','PostController')->names('blog.posts');
+Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
+    Route::resource('posts', 'PostController')->names('blog.posts');
 });
 //Админка блога
 
@@ -37,5 +37,10 @@ Route::group($groupData, function () {
     Route::resource('categories', 'CategoryController')
         ->only($methods)
         ->names('blog.admin.categories');
+
+//   BlogPost
+    Route::resource('posts', 'PostController')
+        ->except(['show'])
+        ->names('blog.admin.posts');
 
 });
