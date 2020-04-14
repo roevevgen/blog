@@ -117,6 +117,7 @@ class PostController extends BaseController
 
         $data = $request->all();
 
+//  Ушло в Observer
 //        if(empty($data['slug'])) {
 //          $data['slug'] = \Str::slug($data['title']);
 //        }
