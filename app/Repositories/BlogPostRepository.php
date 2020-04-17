@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Repositories;
 
-
-use App\Models\BlogCategory as Model;
+use App\Models\BlogPost as Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
@@ -17,47 +15,50 @@ class BlogPostRepository extends CoreRepository
     /**
      * @return string
      */
-    protected function getModelClass()
+    public function getModelClass()
     {
         return Model::class;
     }
 
     /**
-     * Получить список статей для вывода в списке (Админка)
+     * Получить список статей для вывода в списке
+     * (Админка)
      *
      * @return LengthAwarePaginator
      */
-    public function getAllWithPaginate()
+    public function  getAllWithPaginate()
     {
-        $columns = [
+        $columns= [
             'id',
             'title',
             'slug',
             'is_published',
             'published_at',
             'user_id',
-            'category_id'
+            'category_id',
         ];
+
         $result = $this->startConditions()
             ->select($columns)
             ->orderBy('id', 'DESC')
-//            ->with(['category', 'user'])
+            // ->with(['category', 'user'])
             ->with([
-                'category' =>function ($query) {
+                'category' => function($query) {
                     $query->select(['id', 'title']);
                 },
-                'user:id,name'
+                'user:id,name',
             ])
             ->paginate(25);
 
         return $result;
     }
+
     /**
      *  Получить модель для редактирования в админке.
      *
      * @param int $id
      *
-     * @return \App\Models\BlogPost
+     * @return Model
      */
     public function getEdit($id)
     {
