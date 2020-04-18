@@ -16,9 +16,14 @@ class BlogPostObserver
 
     public function created(BlogPost $blogPost)
     {
-      /*  $this->setPublishedAt($blogPost);
+        $this->setPublishedAt($blogPost);
 
-        $this->setSlug($blogPost); */
+        $this->setSlug($blogPost);
+
+        $this->setHtml($blogPost);
+
+        $this->setUser($blogPost);
+
     }
 
     /**
@@ -63,6 +68,29 @@ class BlogPostObserver
             $blogPost->slug = Str::slug($blogPost->title);
         }
     }
+    /**
+     * Устанавливаем значение полю content_raw относителььно поня content_raw.
+     *
+     * @param BlogPost $blogPost
+     */
+    protected function setHtml(BlogPost $blogPost)
+    {
+        if ($blogPost->isDirty('content_raw')) {
+            // TODO: Тут должна быть генерация markdown -> html
+            $blogPost->content_html = $blogPost->content_raw;
+        }
+    }
+
+    /**
+     * Если не указаои user_id, то устанавливаем пользователя по-умолчанию.
+     *
+     * @param BlogPost $blogPost
+     */
+    protected function setUser(BlogPost $blogPost)
+    {
+        $blogPost->user_id = auth()->id() ?? BlogPost::UNKNOWN_USER;
+    }
+
 
     /**
      * Handle the blog post "deleted" event.
