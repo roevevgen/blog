@@ -40,7 +40,10 @@ class BlogPostCreateRequest extends FormRequest
     {
         return [
             'title.required'       => 'Введите заголовок статьи',
+            'title.min' => 'Минимальная длинна заголовка [:min] символа',
+            'title.max' => 'Максимальная длинна заголовка [:max] символа',
             'content_raw.min' => 'Минимальная длинна статьи [:min] символа',
+            'content_raw.max' => 'Максимальна длинна статьи [:max] символов'
         ];
     }
 

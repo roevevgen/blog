@@ -30,17 +30,17 @@
                                     <td @if(in_array($item->parent_id, [0, 1])) style="color:#ccc" @endif>
                                         {{--                                         {{ $item->parentCategory->title ?? '?' }}--}}
 
-                                        {{--                                         {{ optional($item->parentCategory)->title }}--}}
+                                        {{--                                                                                 {{ optional($item->parentCategory)->title }}--}}
                                         {{--                                        --}}
-                                        {{--                                         {{ --}}
-                                        {{--                                          $item->parentCategory->title--}}
-                                        {{--                                          ?? ($item->id === \App\Models\BlogCategory::ROOT--}}
-                                        {{--                                          ? 'Корень'--}}
-                                        {{--                                          : '???')--}}
-                                        {{--                                          }}--}}
-                                        {{--                                        --}}
-                                        {{--                                        {{ $item->parent_title }}--}}
-                                        {{ $item->parentTitle }}
+{{--                                        {{--}}
+{{--                                         $item->parentCategory->title--}}
+{{--                                         ?? ($item->id === \App\Models\BlogCategory::ROOT--}}
+{{--                                         ? 'Корень'--}}
+{{--                                         : '???')--}}
+{{--                                         }}--}}
+
+{{--                                                                                {{ $item->parent_title }}--}}
+                                                                                {{ $item->parentTitle }}
 
                                     </td>
                                 </tr>

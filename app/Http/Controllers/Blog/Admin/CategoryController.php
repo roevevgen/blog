@@ -64,7 +64,7 @@ class CategoryController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param BlogCategoryCreateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(BlogCategoryCreateRequest $request)
@@ -109,10 +109,33 @@ class CategoryController extends BaseController
      * Show the form for editing the specified resource.
      *
      * @param int $id
+     * @param  BlogCategoryRepository $categoryRepository
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
+//        $item = $this->blogCategoryRepository->getEdit($id);
+//
+//        $v['title_before'] = $item->title;
+//
+//        $item->title = 'ASDadsadadDDD asdasd 1212';
+//
+//        $v['title_after'] = $item->title;
+//        $v['getAttribute'] = $item->getAttribute('title');
+//        $v['attributesToArray'] = $item->attributesToArray();
+//        $v['attributes'] = $item->attributes['title'];
+//        $v['getAttributeValue'] = $item->getAttributeValue('title');
+//        $v['getMutatedAttributes'] = $item->getMutatedAttributes();
+//        $v['hasGetMutator for title'] = $item->hasGetMutator('title');
+//        $v['toArray'] = $item->toArray();
+//
+//        dd($v, $item);
+//
+//        if (empty($item)) {
+//            abort(404);
+//        }
+
+
 
 //        $item = BlogCategory::findOrFail($id);
 //        $item = BlogCategory::find($id);
