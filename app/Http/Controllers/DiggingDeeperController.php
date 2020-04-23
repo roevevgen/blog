@@ -35,29 +35,31 @@ class DiggingDeeperController extends Controller
          */
         $collection = collect($eloquentCollection->toArray());
 
-        dd(
-            get_class($eloquentCollection),
-            get_class($collection),
-            $collection
-        );
+//        dd(
+//            get_class($eloquentCollection),
+//            get_class($collection),
+//            $collection
+//        );
 
         // Выборка первый и последний
 //        $result['first'] = $collection->first();
 //        $result['last'] = $collection->last();
 
+
         // Выборка статей которые = 10
-//        $result['where']['data'] = $collection
-//            ->where('category_id', 10)
-//            ->values()
-//            ->keyBy('id');
+        $result['where']['data'] = $collection
+            ->where('category_id',10)
+            ->values()
+            ->keyBy('id');
+
+//        dd($result);
+
 //
-
-
 //        $result['where']['count'] = $result['where']['data']->count();
 //        $result['where']['isEmpty'] = $result['where']['data']->isEmpty();
 //        $result['where']['isNotEmpty'] = $result['where']['data']->isNotEmpty();
-
-        //dd($result);
+//
+//        dd($result);
 
         // Базовая перемененая не изменяется. Просто вернется измененная версия.
 //        $result['map']['all'] = $collection->map(function (array $item) {
@@ -69,7 +71,8 @@ class DiggingDeeperController extends Controller
 //
 //            return $newsItem;
 //        });
-//
+
+
 //        $result['map']['not_exists'] = $result['map']['all']->where('exists',
 //            '=', false)
 //            ->values();
@@ -77,16 +80,16 @@ class DiggingDeeperController extends Controller
 //        dd($result);
 
 //        // Базовая переменная измениться (трансформируется).
-//        ;$collection->transform(function (array $item) {
-//            $newItem = new \stdClass();
-//            $newItem->item_id = $item['id'];
-//            $newItem->item_name = $item['title'];
-//            $newItem->exists = is_null($item['deleted_at']);
-//            $newItem->created_at = Carbon::parse($item['created_at']);
-//
-//            return $newItem;
-//    });
-//        dd($collection);
+        ;$collection->transform(function (array $item) {
+            $newItem = new \stdClass();
+            $newItem->item_id = $item['id'];
+            $newItem->item_name = $item['title'];
+            $newItem->exists = is_null($item['deleted_at']);
+            $newItem->created_at = Carbon::parse($item['created_at']);
+
+            return $newItem;
+    });
+        dd($collection);
     }
 
 }

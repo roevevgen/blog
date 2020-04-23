@@ -24,10 +24,10 @@ class BlogPostCreateRequest extends FormRequest
     public function rules()
     {
         return [
-                'title'         => 'required|min:5|max:200',
-                'slug'          => 'max:200',
-                'content_raw'   => 'required|string|min:5|max:10000',
-                'category_id'   => 'required|integer|exists:blog_categories,id',
+            'title'         => 'required|min:5|max:200',
+            'slug'          => 'max:200',
+            'content_raw'   => 'required|string|min:5|max:10000',
+            'category_id'   => 'required|integer|exists:blog_categories,id',
         ];
     }
 
@@ -40,10 +40,7 @@ class BlogPostCreateRequest extends FormRequest
     {
         return [
             'title.required'       => 'Введите заголовок статьи',
-            'title.min' => 'Минимальная длинна заголовка [:min] символа',
-            'title.max' => 'Максимальная длинна заголовка [:max] символа',
             'content_raw.min' => 'Минимальная длинна статьи [:min] символа',
-            'content_raw.max' => 'Максимальна длинна статьи [:max] символов'
         ];
     }
 
@@ -52,11 +49,11 @@ class BlogPostCreateRequest extends FormRequest
      *
      * @param array
      */
-     public function attributes()
-     {
-         return [
-             'title' => 'Заголовок',
-             ];
-     }
+    public function attributes()
+    {
+        return [
+            'title' => 'Заголовок',
+        ];
+    }
 
 }
