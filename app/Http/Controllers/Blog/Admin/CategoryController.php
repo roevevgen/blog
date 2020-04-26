@@ -25,8 +25,8 @@ class CategoryController extends BaseController
 
     public function __construct()
     {
-       parent::__construct();
-       $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+        parent::__construct();
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
     /**
@@ -70,12 +70,12 @@ class CategoryController extends BaseController
     public function store(BlogCategoryCreateRequest $request)
     {
         $data = $request->input();
-       /*
-       //Ушло в observer
-       if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title']);
-        }
-       */
+        /*
+        //Ушло в observer
+        if (empty($data['slug'])) {
+             $data['slug'] = Str::slug($data['title']);
+         }
+        */
 
         // Создаст объект но не добавит в БД
 //        $item = new BlogCategory($data);
@@ -185,7 +185,6 @@ class CategoryController extends BaseController
            $validateData[] = $validator->failed();
            $validateData[] = $validator->errors();
            $validateData[] = $validator->fails();
-
            dd($validateData); */
 //        $item = BlogCategory::find($id);
         $item = $this->blogCategoryRepository->getEdit($id);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog\Admin;
 use App\Http\Requests\BlogPostCreateRequest;
 use App\Http\Requests\BlogPostUpdateRequest;
 use App\Jobs\BlogPostAfterCreateJob;
+use App\Jobs\BlogPostAfterDeleteJob;
 use App\Models\BlogPost;
 use App\Repositories\BlogCategoryRepository;
 use App\Repositories\BlogPostRepository;
@@ -173,7 +174,17 @@ class PostController extends BaseController
         // полное удаление из бд
 //         $result = BlogPost::find($id)->forceDelete();
 
+
+
         if ($result) {
+            BlogPostAfterDeleteJob::dispatch($id)->delay(20);
+// like force - in at the moment -make task
+            //  BlogPostAfterDeleteJob::dispatchNow($id);
+
+            // with helper
+            //$this->dispatch(new BlogPostAfterDeleteJob($id));
+//   more - $this->>dispatchNow(.....)  despatchableJob need is
+
             return redirect()
                 ->route('blog.admin.posts.index')
                 ->with(['success' => "Запись id[$id] удалена"]);
