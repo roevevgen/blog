@@ -10,17 +10,18 @@ git clone https://github.com/roevevgen/blog.git
 ```bash
 cd blog
 ```
+**Create the `.env` file**
+
+```bash
+cp .env.example .env
+```
 **Install the dependencies**
 
 ```bash
 composer install
 npm install
 ```
-**Create the `.env` file**
 
-```bash
-cp .env.example .env
-```
 **Generate encryption key**
 
 ```bash
