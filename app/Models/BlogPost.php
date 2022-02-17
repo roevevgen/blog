@@ -41,7 +41,7 @@ class BlogPost extends Model
     /** Категории в статье
      * @return BelongsTo
      */
-    public function category()
+    public function category(): BelongsTo
     {
         //Статья принадлежит категории
         return $this->belongsTo(BlogCategory::class);
@@ -50,7 +50,7 @@ class BlogPost extends Model
     /**Автор статьи
      * @return BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
         //Статья принадлежит пользователю
         return $this->belongsTo(User::class);

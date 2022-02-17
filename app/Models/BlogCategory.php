@@ -24,6 +24,9 @@ class BlogCategory extends Model
      */
     const ROOT = 1;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'title',
         'slug',
@@ -36,7 +39,7 @@ class BlogCategory extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function  parentCategory()
+    public function  parentCategory(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(BlogCategory::class, 'parent_id', 'id');
     }
@@ -48,7 +51,7 @@ class BlogCategory extends Model
      *
      * @return string
      */
-    public function getParentTitleAttribute()
+    public function getParentTitleAttribute(): string
     {
         $title = $this->parentCategory->title
             ?? ($this->isRoot()
@@ -62,7 +65,7 @@ class BlogCategory extends Model
      *
      * @return bool
      */
-    public function isRoot()
+    public function isRoot(): bool
     {
         return $this->id === BlogCategory::ROOT;
     }
