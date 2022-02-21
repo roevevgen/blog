@@ -40,6 +40,7 @@ php artisan migrate:fresh --seed
 ```
 
 **Start**
+
 ```bash
 php artisan serve
 ```
