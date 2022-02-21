@@ -37,3 +37,9 @@ php artisan migrate
 
 ```bash
 php artisan migrate:fresh --seed
+```
+
+**Start**
+```bash
+php artisan serve
+```
